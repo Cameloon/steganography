@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganography with AES Encryption</title>
+    <link rel="stylesheet" href="styles.css"></link>
+</head>
+<body>
+
+    <h1>Steganography with AES Encryption</h1>
+    <h2>MUST BE PNG images</h2>
+    
+    <!-- input for uploading the image encode + decode -->
+    <input type="file" id="imageInput">
+    <br><br>
+    <img id="image" src="" alt="Image to encode" style="display:none;">
+    <br><br>
+    
+    <!-- input for password and encryption key -->
+    <input type="text" id="passwordInput" placeholder="Enter password">
+    <input type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
+    <br><br>
+    <button id="encodeButton">Store Encrypted Password</button>
+    <br><br>
+    <button id="downloadButton">Download Encoded Image</button>
+    <br><br>
+    <button id="decodeButton">Retrieve Password</button>
+
+    <h3>Decoded Password: <span id="decodedPassword"></span></h3>
+    
+    <canvas id="canvas"></canvas>
+    <script src="steganography.js"></script>
+</body>
+</html>

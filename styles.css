@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+img {
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+canvas {
+    display: none;
+}
