@@ -18,8 +18,14 @@
     <br><br>
     
     <!-- input for password and encryption key -->
-    <input type="text" id="passwordInput" placeholder="Enter password">
-    <input type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
+    <label for="passwordInput"> Make sure the password is longer than 
+        <input type="text" id="passwordInput" placeholder="Enter password">
+    </label>
+    <br>
+    <br>
+    <label for="encryptionKeyInput">Make sure key is exactly 32bytes e.g: 32characters:
+        <input type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
+    </label>
     <br><br>
     <button id="encodeButton">Store Encrypted Password</button>
     <br><br>
