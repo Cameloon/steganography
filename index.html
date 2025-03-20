@@ -7,35 +7,54 @@
     <link rel="stylesheet" href="styles.css"></link>
 </head>
 <body>
-
-    <h1>Steganography with AES Encryption</h1>
-    <h2>MUST BE PNG images</h2>
-    
-    <!-- input for uploading the image encode + decode -->
-    <input type="file" id="imageInput">
-    <br><br>
-    <img id="image" src="" alt="Image to encode" style="display:none;">
-    <br><br>
-    
-    <!-- input for password and encryption key -->
-    <label for="passwordInput"> Make sure the password is longer than 
-        <input type="text" id="passwordInput" placeholder="Enter password">
-    </label>
-    <br>
-    <br>
-    <label for="encryptionKeyInput">Make sure key is exactly 32bytes e.g: 32characters:
-        <input type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
-    </label>
-    <br><br>
-    <button id="encodeButton">Store Encrypted Password</button>
-    <br><br>
-    <button id="downloadButton">Download Encoded Image</button>
-    <br><br>
-    <button id="decodeButton">Retrieve Password</button>
-
-    <h3>Decoded Password: <span id="decodedPassword"></span></h3>
-    
-    <canvas id="canvas"></canvas>
+    <header>
+        <h1>Steganography with AES Encryption</h1>
+        <h2 style="color: red;">MUST BE PNG images</h2>
+    </header>
+    <main>
+        <div class="encode-wrapper">
+            Upload image
+            <div id="dropzone" class="dragndrop"><!-- make drag & drop zone-->
+                <!-- input for uploading the image encode + decode -->
+                 <div>
+                    <img class="svg" src="./assets/upload.svg"></img>
+                    <p>Drop image here or</p>
+                </div>
+                <div class="clickFile">
+                    <label class="fileInputButton" for="imageInput" onchange="handleFiles">Choose file</label>
+                    <input class="fileInput" type="file" id="imageInput" accept="image/PNG">
+                </div>
+            </div>
+            <div class="image-preview-container">
+                <img id="image" src="" alt="Image to encode" style="display:none;">
+            </div>
+            <!-- input for password and encryption key -->
+            <div class="input-container">
+                <div class="input-box">
+                    <label for="passwordInput">Make sure the password is longer than</label>
+                    <input class="" type="text" id="passwordInput" placeholder="Enter password you want to embed into image">
+                </div>
+                <div class="input-box">
+                    <label for="encryptionKeyInput">Make sure key is exactly 32bytes = 32characters:</label>
+                    <input class="" type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
+                    <p>e.g: 32 characters: (123456789qwertzuiop1234567891234)</p>
+                </div>
+            </div>
+            <div class="en-decode-btns-container">
+                <button class="button" id="encodeButton">Embed Encrypted Password</button>
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="25.828" height="14.769"><path d="m13.616 2.828 2.585 2.586H0v4h16.143l-2.527 2.526 2.828 2.829 7.384-7.384L16.444 0l-2.828 2.828z"/></svg>
+                <button class="button" id="downloadButton">Download Encoded Image</button>
+            </div>
+        </div>
+        <div class="decode-wrapper">
+            <button class="button" id="decodeButton">Retrieve Password</button>
+            <h3>Decoded Password: <span id="decodedPassword"></span></h3>
+        </div>
+        <canvas id="canvas"></canvas>
+    </main>
+    <footer>
+        <p>Copyright &#169; Made from scratch in 2025 by Daniel Beljaew. All Rights Reserved</p>
+    </footer>
     <script src="steganography.js"></script>
 </body>
 </html>

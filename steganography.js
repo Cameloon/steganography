@@ -1,13 +1,15 @@
-//load image for latet encoding and decoding  --> only png!!! eg. not jpeg due to compression and lost LSB
-document.getElementById('imageInput').addEventListener('change', function () {
+//load image for latet encoding and decoding  --> only png!!! eg. not jpeg due to compression -> lost LSB
+document.getElementById('imageInput').addEventListener('change', () => {
     const imageInput = document.getElementById('imageInput');
     const image = document.getElementById('image');
     const file = imageInput.files[0];
     const reader = new FileReader();
 
-    reader.onload = function (event) {
-        image.onload = function () {
-            image.style.display = 'block';
+    //check if pic is png and only allow png, otherwise throw an error code here:
+
+    reader.onload = (event) => {
+        image.onload = () => {
+            image.style.display = 'block'; /* was block or flex */
         };
         image.src = event.target.result;
     };
@@ -15,9 +17,43 @@ document.getElementById('imageInput').addEventListener('change', function () {
     if (file) {
         reader.readAsDataURL(file);
     }
+});
 
-    //check if pic is png and only allow png, otherwise throw an error code here:
-    
+//same as above but for dropzone, thx to:_ https://www.mediaevent.de/javascript/drag-drop-file-upload.html#nav_menu
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('imageInput');
+
+//drang and drop handlers
+dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+});
+
+dropzone.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+});
+
+dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        //check if pic is png and only allow png, otherwise throw an error code here:
+        if(!files[0].type.match('image/png')) {
+            alert('As written in the heading this only works with PNG files!');
+            return;
+        }
+        
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(files[0]);
+        fileInput.files = dataTransfer.files;
+        
+        //triggers change handler?
+        const event = new Event('change');
+        fileInput.dispatchEvent(event);
+    }
 });
 
 // encodw password into the image
@@ -35,6 +71,11 @@ document.getElementById('encodeButton').addEventListener('click', async function
         alert('Please upload an image first.');
         return;
     }
+
+    //create temp. image with og dimensions because of scaled down version fucks the embedded pic
+    const tempImage = new Image();
+    tempImage.src = image.src;
+    await new Promise(resolve => tempImage.onload = resolve);
 
     // cerate encryption key from input - has to be 32 bit
     const keyBuffer = new TextEncoder().encode(encryptionKey);
@@ -60,11 +101,12 @@ document.getElementById('encodeButton').addEventListener('click', async function
             encodedPassword
         );
 
+        //now using the original dimensions of img insteead of previous img (naturalWidth +height)
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        ctx.drawImage(image, 0, 0);
+        canvas.width = tempImage.naturalWidth;
+        canvas.height = tempImage.naturalHeight;
+        ctx.drawImage(tempImage, 0, 0, tempImage.naturalWidth, tempImage.naturalHeight); //??like this
 
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
@@ -99,8 +141,9 @@ document.getElementById('encodeButton').addEventListener('click', async function
         }
 
         ctx.putImageData(imageData, 0, 0);
-        const encodedImageURL = canvas.toDataURL();
-        image.src = encodedImageURL;
+        image.src = canvas.toDataURL();
+        /* const encodedImageURL = canvas.toDataURL();
+        image.src = encodedImageURL; */
 
         alert('Password encoded into the image successfully.');
     } catch (error) {
@@ -126,17 +169,21 @@ document.getElementById('downloadButton').addEventListener('click', function () 
 //for decodoing the password from the previously encoded image - thx internet
 document.getElementById('decodeButton').addEventListener('click', async function () {
     const encryptionKey = document.getElementById('encryptionKeyInput').value;
+    const image = document.getElementById('image');
 
     if (!encryptionKey) {
         alert('Please provide an encryption key.');
         return;
     }
-
-    const image = document.getElementById('image');
     if (!image.src) {
         alert('Please upload an encoded image first.');
         return;
     }
+
+    //again temp image for og dimensions of img
+    const tempImage = new Image();
+    tempImage.src = image.src;
+    await new Promise(resolve => tempImage.onload = resolve);
 
     // to ceate the encryption key from inputted key
     const keyBuffer = new TextEncoder().encode(encryptionKey);
@@ -153,9 +200,10 @@ document.getElementById('decodeButton').addEventListener('click', async function
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = image.width;
-    canvas.height = image.height;
-    ctx.drawImage(image, 0, 0);
+    //like in encoding, using the original dimensions
+    canvas.width = tempImage.naturalWidth;
+    canvas.height = tempImage.naturalHeight;
+    ctx.drawImage(tempImage, 0, 0, tempImage.naturalWidth, tempImage.naturalHeight);
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;

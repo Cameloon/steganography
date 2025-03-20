@@ -1,13 +1,154 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    height: 100%;
+}
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    gap: 2rem;
 }
-img {
-    max-width: 100%;
+header {
+    margin: 3rem 0 5rem 0;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+.encode-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    border-bottom: solid 3px lightgray ;
+    padding: 0 0 1rem 0;
+}
+.decode-wrapper {
+    display: flex;
+    margin: 3rem 0 0 0;
+}
+.image-preview-container {
+    width: 50px;
+    height: 50px;
+}
+#image {
+    max-width: 50px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
     display: block;
     margin: auto;
+    object-fit: contain;
+
+    /* max-width: 100%; 
+    max-height: 100%; 
+    display: flex;
+    margin: auto; */
+}
+.svg {
+    height: 2.25rem;
+    width: fit-content;
+}
+#imageInput {
+    height: 5rem;
+    width: 100%;
+}
+.fileInput {
+    display: none;
+}
+.fileInputButton {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #ADB2D4;
+    font-weight: 700;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    border: solid 2px #ADB2D4;
+    border-radius: 7px;
+}
+.fileInputButton:hover {
+    background-color: #ADB2D4;
+    color: whitesmoke;
+}
+.dragndrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: dashed 2.5px #ADB2D4;
+    border-radius: 10px;
+    width: 50%;
+    height: auto;
+    min-height: 11rem;
+    background-color: #c0c5ce17;
+    margin: 0 0 5rem 0;
+    gap: 2rem;
+}
+.dragndrop p {
+    font-weight: 600;
+}
+.input-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+.input-box input {
+    height: 2rem;
+    width: auto;
+    text-align: center;
+}
+.input-box p {
+    margin: 0.5rem 0 0 0;
+}
+#passwordInput:focus {
+    background: #ADB2D4;
+    color: aqua;
+}
+#passwordInput::placeholder{
+    color: red;
+}
+
+#passwordInput {
+    color: green;
+    background-color: #ADB2D4;
+}
+.en-decode-btns-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0; 
+    align-items: center;
+}
+.button {
+    width: 10rem;
+    padding: 0.5rem;
 }
 canvas {
     display: none;
+}
+footer {
+    position: relative;
+    min-height: 4rem;
+    background-color: #ADB2D4;
+    
+    bottom: 0;
+    display: flex; /*was flex*/
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
 }
