@@ -109,7 +109,7 @@ main {
 }
 .input-box input {
     height: 2em;
-    width: 80%;
+    width: 100%;
     text-align: center;
 }
 .input-box p {
