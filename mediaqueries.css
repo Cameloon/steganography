@@ -1,5 +1,38 @@
 @media screen and (max-width: 800px) {
-    .input-container {
-        flex-direction: column;
+    .image-preview-container {
+        width: 60%;
+        height: 60%;
+        margin: 0 0 2rem 0;
+    }
+    #image {
+        max-width: 60%;
+        max-height: 60%;
+        width: auto;
+        height: auto;
+        display: block;
+        margin: auto;
+        object-fit: contain;
+    }
+
+    .dragndrop {
+        width: 80%;
+        margin: 0 0 2rem 0;
+    }
+
+    .input-box {
+        align-items: center;
+    }
+
+    .en-decode-btns-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0; 
+        align-items: center;
+    }
+
+    .button {
+        width: 5rem;
+        padding: 0.5rem;
     }
 }

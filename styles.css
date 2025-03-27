@@ -11,6 +11,8 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 100%;
     gap: 2rem;
 }
@@ -28,6 +30,7 @@ main {
     flex-direction: column;
     align-items: center;
     height: 100%;
+    width: 80%;
     border-bottom: solid 3px lightgray ;
     padding: 0 0 1rem 0;
 }
@@ -105,8 +108,8 @@ main {
     flex-direction: column;
 }
 .input-box input {
-    height: 2rem;
-    width: auto;
+    height: 2em;
+    width: 80%;
     text-align: center;
 }
 .input-box p {
@@ -120,7 +123,7 @@ main {
     color: red;
 }
 
-#passwordInput {
+#passwordInput,#encryptionKeyInput {
     color: green;
     background-color: #ADB2D4;
 }
