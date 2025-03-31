@@ -15,7 +15,7 @@
     }
 
     .dragndrop {
-        width: 80%;
+        width: 70%;
         margin: 0 0 2rem 0;
     }
 
@@ -37,7 +37,7 @@
     }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 500px) {
     .en-decode-btns-container {
         display: flex;
         flex-wrap: wrap;
@@ -86,5 +86,13 @@
 
     .input-box {
         width: 100%;
+    }
+
+    .decode-wrapper {
+        width: 95%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
 }
