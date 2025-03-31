@@ -10,7 +10,7 @@ html {
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    position: relative;
+    /* position: relative;*/
     display: flex;
     flex-direction: column;
     justify-content: center;

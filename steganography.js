@@ -16,6 +16,7 @@ document.getElementById('imageInput').addEventListener('change', () => {
 
     if (file) {
         reader.readAsDataURL(file);
+        console.log(file.name)
     }
 });
 
@@ -23,7 +24,7 @@ document.getElementById('imageInput').addEventListener('change', () => {
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('imageInput');
 
-//drang and drop handlers
+//drang and drop handlers for full control
 dropzone.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropzone.classList.add('dragover');
@@ -55,6 +56,9 @@ dropzone.addEventListener('drop', (e) => {
         fileInput.dispatchEvent(event);
     }
 });
+
+//dont show normal dropzone if file is added!:
+
 
 // encodw password into the image
 document.getElementById('encodeButton').addEventListener('click', async function () {
