@@ -4,7 +4,7 @@
 }
 html {
     height: 100%;
-    overflow: hidden; /* cuz it appears wider on safari tahn actually is*/
+    /*overflow: hidden; /* cuz it appears wider on safari tahn actually is??doesnt seem to work*/
 }
 body {
     font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
+    /* flex: 1;*/ 
 }
 .encode-wrapper {
     display: flex;
@@ -146,7 +146,6 @@ footer {
     position: relative;
     min-height: 4rem;
     background-color: #ADB2D4;
-    
     bottom: 0;
     display: flex; /*was flex*/
     flex-direction: column;
@@ -154,5 +153,4 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    
 }
