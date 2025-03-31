@@ -18,9 +18,24 @@ body {
     min-height: 100%;
     gap: 2rem;
     overflow-x: hidden; /* same as in html*/
+    width: 100vw;
 }
 header {
-    margin: 3rem 0 5rem 0;
+    background-color: #d5d7e2;
+    margin: 0 0 2.5rem 0;
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-family: Orbitron;
+    margin: 1rem 0;
+}
+h1 span {
+    font-weight: 900;
+    text-shadow: 2.55px 0 black;
 }
 main {
     display: flex;
@@ -28,6 +43,7 @@ main {
     align-items: center;
     flex: 1;
 }
+
 .encode-wrapper {
     display: flex;
     flex-direction: column;
