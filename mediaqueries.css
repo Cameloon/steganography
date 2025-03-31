@@ -53,6 +53,7 @@
 
     .dragndrop {
        /* width: 70%;*/
+        max-width: 13rem;
         min-width: 13rem;
         min-height: 9rem;
         margin-bottom: 2rem;
