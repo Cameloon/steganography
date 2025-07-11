@@ -13,7 +13,6 @@
         margin: auto;
         object-fit: contain;
     }
-
     .dragndrop {
         /*width: 90%;*/
         margin: 0 0 2rem 0;
@@ -38,6 +37,20 @@
 }
 
 @media screen and (max-width: 500px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        margin-top: 0.2rem;
+        font-size: 0.7rem;
+    }
+
+    #header-pic {
+        height: 70px;
+        margin: 0 0rem 0 3rem ;
+    }
+
     .en-decode-btns-container {
         display: flex;
         flex-wrap: wrap;
@@ -68,13 +81,14 @@
         line-break: anywhere;
     }
 
-    .input-box label {
+    .input-box {
         width: 50%;
     }
 
+
     .input-box input {
-        height: 2em;
-        width: 50%;
+        height: 3rem;
+        width: 100%;
         text-align: center;
     }
 
@@ -84,11 +98,12 @@
     }
 
     .input-container {
+        width: 70%;
         gap: 1rem;
-    }
-
-    .input-box {
-        width: 100%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
 
     .decode-wrapper {

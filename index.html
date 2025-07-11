@@ -12,13 +12,22 @@
     </head>
     <body>
         <header>
-            <img id ="header-pic" src="assets/steg-icon.png" style="width: fit-content; height: 90px; margin:0 0 0 2rem;">
-            <h1><span>Steganography</span> with AES Encryption</h1>
+            <div class="firstHeading">
+                <img id ="header-pic" src="assets/steg-icon.png">
+                <h1><span>Steganography</span> with AES Encryption</h1>
+            </div>
+            <h3>Embed your passwords into pictures - the EASY WAY</h3>
         </header>
         <main>
-            <div class="encode-wrapper">
-                Upload image
-                <div id="dropzone" class="dragndrop"><!-- make drag & drop zone-->
+            <div class="tab">
+                    <button id="defaultOpen" class="tabField" onclick="openTab(event, 'Encode')">
+                        ENCODE
+                    </button>
+                    <button id="decode-button" class="tabField" onclick="openTab(event, 'Decode')" >
+                        DECODE
+                    </button>
+            </div>
+            <div id="dropzone" class="dragndrop"><!-- make drag & drop zone-->
                     <!-- input for uploading the image encode + decode -->
                     <div>
                         <img class="svg" src="./assets/upload.svg"></img>
@@ -32,28 +41,51 @@
                         <img id="image" src="" alt="Image to encode" style="display:none;">
                     </div> -->
                 </div>
-                <div class="image-preview-container">
+                <div id="image-preview-container" class="image-preview-container">
                     <img id="image" src="" alt="Image to encode" style="display:none;">
                 </div>
+            <div id="Encode" class="encode-wrapper tabContent">
                 <!-- input for password and encryption key -->
                 <div class="input-container">
                     <div class="input-box">
-                        <label for="passwordInput">Make sure the password is longer than</label>
-                        <input class="" type="text" id="passwordInput" placeholder="Enter password you want to embed into image">
+                        <div class="group">
+                            <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <input id="passwordInput" class="input" type="text" placeholder="Password">
+                        </div>
                     </div>
                     <div class="input-box">
-                        <label for="encryptionKeyInput">Make sure key is exactly 32bytes = 32characters:</label>
-                        <input class="" type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
-                        <p>e.g: 32 characters: (123456789qwertzuiop1234567891234)</p>
+                        <div class="group">
+                            <svg class="icon-larger" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" viewBox="0 0 24 24" fill="currentColor" class="bi bi-key" viewBox="0 0 24 24" class="icon">
+                                <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"/>
+                                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                            </svg>
+                            <input id="encryptionKeyInput1" class="input" type="password" placeholder="Encryption Key">
+                        </div>
                     </div>
+                    <!-- old key input box
+                    <div class="input-box">
+                        <input class="" type="password" id="encryptionKeyInput" placeholder="Encryption Key">
+                    </div>
+                    -->
                 </div>
                 <div class="en-decode-btns-container">
-                    <button class="button" id="encodeButton">Embed Encrypted Password</button>
-                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="25.828" height="14.769"><path d="m13.616 2.828 2.585 2.586H0v4h16.143l-2.527 2.526 2.828 2.829 7.384-7.384L16.444 0l-2.828 2.828z"/></svg>
-                    <button class="button" id="downloadButton">Download Encoded Image</button>
+                    <button class="button" id="encodeButton">Embed Encrypted Password + Download</button>
                 </div>
             </div>
-            <div class="decode-wrapper">
+            <div id="Decode" class="decode-wrapper tabContent">
+                <div class="input-container">
+                    <div class="input-box">
+                        <div class="group">
+                            <svg class="icon-larger" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" viewBox="0 0 24 24" fill="currentColor" class="bi bi-key" viewBox="0 0 24 24" class="icon">
+                                <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"/>
+                                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                            </svg>
+                            <input class="input" type="password" id="encryptionKeyInput" placeholder="Enter encryption key">
+                        </div>
+                    </div>
+                </div>
                 <button class="button" id="decodeButton">Retrieve Password</button>
                 <h3>Decoded Password: 
                     <br>
@@ -61,6 +93,12 @@
                 </h3>
             </div>
             <canvas id="canvas"></canvas>
+            <div class="infoBox">
+                <br>
+                <h4>KEEP IN MIND</h4><br>
+                <p>Password: Make sure the password is longer than </p><br>
+                <p>Keys: Make sure key is exactly 32bytes = 32characters: e.g: 32 characters: (123456789qwertzuiop1234567891234)</p>
+            </div>
         </main>
         <footer>
             <p>Copyright &#169; Made from scratch in 2025 by Daniel Beljaew. All Rights Reserved</p>

@@ -1,15 +1,23 @@
+window.onload = () => { document.getElementById("defaultOpen").click()}
+
+//special thx to https://medium.com/@mayurd0303/12-web-apis-you-need-to-know-4d1689f6b432 ,inspired FileReader, Drag-n-Drop and Canvas API
+
 //load image for latet encoding and decoding  --> only png!!! eg. not jpeg due to compression -> lost LSB
 document.getElementById('imageInput').addEventListener('change', () => {
     const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('image-preview-container')
     const image = document.getElementById('image');
     const file = imageInput.files[0];
     const reader = new FileReader();
 
-    //check if pic is png and only allow png, otherwise throw an error code here:
+    //show image-preview-container when image is uploaded
+    imagePreview.style.display = "flex";
 
+    //check if pic is png and only allow png, otherwise throw an error code here:
     reader.onload = (event) => {
         image.onload = () => {
             image.style.display = 'block'; /* was block or flex */
+
         };
         image.src = event.target.result;
     };
@@ -57,13 +65,13 @@ dropzone.addEventListener('drop', (e) => {
     }
 });
 
-//dont show normal dropzone if file is added!:
-
+//dont show normal dropzone if file is added!(hiding like in line 19):
+  
 
 // encodw password into the image
 document.getElementById('encodeButton').addEventListener('click', async function () {
     const password = document.getElementById('passwordInput').value;
-    const encryptionKey = document.getElementById('encryptionKeyInput').value;
+    const encryptionKey = document.getElementById('encryptionKeyInput1').value;
 
     if (!password || !encryptionKey) {
         alert('Please enter both password and encryption key.');
@@ -150,12 +158,26 @@ document.getElementById('encodeButton').addEventListener('click', async function
         image.src = encodedImageURL; */
 
         alert('Password encoded into the image successfully.');
+
+        /* DOWNLOADING IMAGE (was its own button previously...) */
+        const imageDataURL = document.getElementById('image').src;
+        if (!imageDataURL) {
+        alert('Please encode an image first.');
+        return;
+        }
+
+        const link = document.createElement('a');
+        link.href = imageDataURL;
+        link.download = 'encoded_image.png';
+        link.click();
+
     } catch (error) {
         console.error('Error during encryption:', error);
     }
+
 });
 
-// download encoded image
+/* download encoded image
 document.getElementById('downloadButton').addEventListener('click', function () {
     const imageDataURL = document.getElementById('image').src;
     if (!imageDataURL) {
@@ -167,8 +189,7 @@ document.getElementById('downloadButton').addEventListener('click', function () 
     link.href = imageDataURL;
     link.download = 'encoded_image.png';
     link.click();
-});
-
+});*/
 
 //for decodoing the password from the previously encoded image - thx internet
 document.getElementById('decodeButton').addEventListener('click', async function () {
@@ -255,3 +276,24 @@ document.getElementById('decodeButton').addEventListener('click', async function
         alert('Failed to decrypt. Check encryption key and image.');
     }
 });
+
+
+function openTab(evt, tabName) {
+    //tohide all tab content
+    const tabContent = document.getElementsByClassName("tabContent");
+    for (let i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+    }
+
+    //removes 'active' from all tab buttons so they're noit  
+    const tabFields = document.getElementsByClassName("tabField");
+    for (let i = 0; i < tabFields.length; i++) {
+        tabFields[i].classList.remove("active");
+    }
+
+    //Show the selected tab content
+    
+    document.getElementById(tabName).style.display = "flex";
+    //mark the clicked button as active
+    evt.currentTarget.classList.add("active");
+}
