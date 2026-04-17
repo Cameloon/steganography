@@ -20,6 +20,38 @@ function openTab(evt, tabName) {
 
 window.onload = () => { document.getElementById("defaultOpen").click()}
 
+const THEME_STORAGE_KEY = 'steganography-theme';
+
+function applyTheme(theme) {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const isDark = theme === 'dark';
+
+    body.classList.toggle('dark-theme', isDark);
+
+    if (themeToggle) {
+        themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+    }
+}
+
+function initializeTheme() {
+    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    applyTheme(storedTheme || preferredTheme);
+}
+
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const nextTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+        applyTheme(nextTheme);
+    });
+}
+
+initializeTheme();
+
 //special thx to https://medium.com/@mayurd0303/12-web-apis-you-need-to-know-4d1689f6b432 ,inspired FileReader, Drag-n-Drop and Canvas API
 
 //load image for latet encoding and decoding  --> only png!!! eg. not jpeg due to compression -> lost LSB
