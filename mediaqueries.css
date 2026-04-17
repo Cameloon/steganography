@@ -1,3 +1,67 @@
+/* RESPONSIVE*/
+@media (max-width: 900px) {
+    body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    #header-pic {
+        color: #db4fd4;
+        height: 65px;
+        margin: 1.75rem 0 0 -2.5rem;
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .shape {
+        margin-right: -2.5rem;
+    }
+
+    .dark {
+        min-width: 180px;
+        height: 8rem;
+        clip-path: polygon(0 0, 100% 0, calc(90% - 50px) 100%, 0 100%);
+        margin-right: -55px;
+    }
+
+    .medium {
+       width: 25vw;
+        min-width: 270px;
+        max-width: 270px;
+        height: 7.75rem;
+        z-index: 2;
+    }
+    
+    .light {
+        min-width: 160px;
+        height: 3rem;
+    }
+
+    .firstHeading {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    .content-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+
+
+
+
 @media screen and (max-width: 800px) {
     .image-preview-container {
         width: 60%;

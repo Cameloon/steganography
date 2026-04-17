@@ -1,3 +1,23 @@
+function openTab(evt, tabName) {
+    //tohide all tab content
+    const tabContent = document.getElementsByClassName("tabContent");
+    for (let i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+    }
+
+    //removes 'active' from all tab buttons so they're noit  
+    const tabFields = document.getElementsByClassName("tabField");
+    for (let i = 0; i < tabFields.length; i++) {
+        tabFields[i].classList.remove("active");
+    }
+
+    //Show the selected tab content
+    
+    document.getElementById(tabName).style.display = "flex";
+    //mark the clicked button as active
+    evt.currentTarget.classList.add("active");
+}
+
 window.onload = () => { document.getElementById("defaultOpen").click()}
 
 //special thx to https://medium.com/@mayurd0303/12-web-apis-you-need-to-know-4d1689f6b432 ,inspired FileReader, Drag-n-Drop and Canvas API
@@ -276,24 +296,3 @@ document.getElementById('decodeButton').addEventListener('click', async function
         alert('Failed to decrypt. Check encryption key and image.');
     }
 });
-
-
-function openTab(evt, tabName) {
-    //tohide all tab content
-    const tabContent = document.getElementsByClassName("tabContent");
-    for (let i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
-
-    //removes 'active' from all tab buttons so they're noit  
-    const tabFields = document.getElementsByClassName("tabField");
-    for (let i = 0; i < tabFields.length; i++) {
-        tabFields[i].classList.remove("active");
-    }
-
-    //Show the selected tab content
-    
-    document.getElementById(tabName).style.display = "flex";
-    //mark the clicked button as active
-    evt.currentTarget.classList.add("active");
-}

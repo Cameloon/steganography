@@ -1,5 +1,9 @@
 {
-  "dependencies": {
-    "crypto-js": "^4.2.0"
+  "name": "crypto-js",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }
