@@ -338,7 +338,7 @@ main {
     position: absolute;
     left: 1rem;
     top: 1rem;
-    fill: currentColor;
+    fill: var(--muted);
     width: 1.9rem;
     height: 2rem;
     color: var(--muted);

@@ -22,10 +22,16 @@ window.onload = () => {
     document.getElementById("defaultOpen").click();
     initializeTheme();
 
+    prefersDarkQuery.addEventListener('change', (event) => {
+        if (!followSystemTheme) return;
+        applyTheme(event.matches ? 'dark' : 'light');
+    });
+
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const nextTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+            followSystemTheme = false;
             localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
             applyTheme(nextTheme);
         });
@@ -33,6 +39,8 @@ window.onload = () => {
 }
 
 const THEME_STORAGE_KEY = 'steganography-theme';
+const prefersDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+let followSystemTheme = false;
 
 function applyTheme(theme) {
     const body = document.body;
@@ -49,7 +57,8 @@ function applyTheme(theme) {
 
 function initializeTheme() {
     const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    followSystemTheme = !storedTheme;
+    const preferredTheme = prefersDarkQuery.matches ? 'dark' : 'light';
     applyTheme(storedTheme || preferredTheme);
 }
 
