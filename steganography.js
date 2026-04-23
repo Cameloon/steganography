@@ -18,7 +18,49 @@ function openTab(evt, tabName) {
     evt.currentTarget.classList.add("active");
 }
 
-window.onload = () => { document.getElementById("defaultOpen").click()}
+window.onload = () => {
+    document.getElementById("defaultOpen").click();
+    initializeTheme();
+
+    prefersDarkQuery.addEventListener('change', (event) => {
+        if (!followSystemTheme) return;
+        applyTheme(event.matches ? 'dark' : 'light');
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const nextTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+            followSystemTheme = false;
+            localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+            applyTheme(nextTheme);
+        });
+    }
+}
+
+const THEME_STORAGE_KEY = 'steganography-theme';
+const prefersDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+let followSystemTheme = false;
+
+function applyTheme(theme) {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const isDark = theme === 'dark';
+
+    body.classList.toggle('dark-theme', isDark);
+
+    if (themeToggle) {
+        themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+    }
+}
+
+function initializeTheme() {
+    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    followSystemTheme = !storedTheme;
+    const preferredTheme = prefersDarkQuery.matches ? 'dark' : 'light';
+    applyTheme(storedTheme || preferredTheme);
+}
 
 //special thx to https://medium.com/@mayurd0303/12-web-apis-you-need-to-know-4d1689f6b432 ,inspired FileReader, Drag-n-Drop and Canvas API
 

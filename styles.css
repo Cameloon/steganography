@@ -2,423 +2,69 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: orbitron;
+    font-family: Orbitron, Arial, sans-serif;
 }
+
+:root {
+    --bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --accent: #ADB2D4;
+    --accent-strong: #818cf8;
+    --surface: rgba(108, 51, 199, 0.10);
+    --surface-strong: rgba(108, 51, 199, 0.15);
+    --border-soft: rgba(255, 255, 255, 0.2);
+    --panel: #f8fafc;
+    --tab-bg: #ece9ef9f;
+    --shape-overlay: rgba(108, 51, 199, 0.15);
+    --shape-texture-opacity: 0.1;
+}
+
+body.dark-theme {
+    --bg: #0f1118;
+    --text: #e5e7eb;
+    --muted: #c3cbdb;
+    --accent: #9fa6d8;
+    --accent-strong: #a5b4fc;
+    --surface: rgba(162, 142, 255, 0.12);
+    --surface-strong: rgba(162, 142, 255, 0.16);
+    --border-soft: rgba(255, 255, 255, 0.16);
+    --panel: #161a23;
+    --tab-bg: rgba(255, 255, 255, 0.08);
+    --shape-overlay: rgba(162, 142, 255, 0.18);
+    --shape-texture-opacity: 0.14;
+}
+
 html {
     height: 100%;
-    overflow-x: hidden; /* cuz it appears wider on safari tahn actually is? maybe with only x-axis??= */
+    overflow-x: hidden;
 }
+
 body {
-    font-family: Arial, sans-serif;
     text-align: center;
-    /* position: relative;*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    min-height: 100%;
-    gap: 2rem;
-    overflow-x: hidden; /* same as in html*/
-    width: 100vw;
-    background-color: #ffffff; /*this is also good #f5f3ff; was #f8f9fa - #e8e8e8*/ /*for dark: #212121 ? */
-}
-header {
+    min-height: 100vh;
     width: 100%;
-    height: 10rem;
-    margin: 0 0 0 0;
-    /* background-color: #b7bbd3; /* it think #212121 looks better - but has to look different in dark mode then*/
-    justify-content: center;
+    overflow-x: hidden;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
-header .firstHeading {
-    margin: 0.5rem 0 0 -2.25rem;
-    width: 100%;
-    height: 7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    min-width: 727.5px; /* otherwise when DECODE -> gets squished */
-    padding-top: 8rem;
-}
-
-.encode-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 80%;
-    padding: 0 0 1rem 0;
-}
-
-.decode-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 80%;
-    padding: 0 0 1rem 0;
-}
-#image-preview-container {
-    display: none; /* only display when image is inputted so that whitespace is avoided */
-    width: 200px;
-    height: 150px;
-}
-#image {
-    max-width: 200px;
-    max-height: 200px;
-    width: auto;
-    height: auto;
-    display: block;
-    margin: auto;
-    object-fit: contain;
-    /* max-width: 100%; 
-    max-height: 100%; 
-    display: flex;
-    margin: auto; */
-}
-.svg {
-    height: 2.25rem;
-    width: fit-content;
-}
-
-.tab button.active {
-  color: #a3aad4; /*#736b80;*/
-  font-weight: 900;
-  font-size: 1rem;
-  background-color: #ffffff;
-}
-
-.tabField {
-    border-radius: 4px;
-    width: auto;
-    height: auto;
-    background-color: transparent;/* #C9C9C9; */
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.55rem 0.8rem;
-    font-family: Orbitron;
-    color: rgba(128, 128, 128, 0.452);
-}
-
-.tabField:hover{
-    cursor: pointer;
-    background-color: #ffffff50;
-}
-
-.tabContent {
-    display: none;
-}
-
-/* tab smaller than dropzone*/
-.tab {
-    border-radius: 5px;
-    width: auto;
-    height: auto;
-    margin: 0 0 3rem 0;
-    padding: 0.37rem 0.37rem;
-    display: flex;
-    justify-content: center;
-    background-color: #ece9ef9f;
-    gap: 0.2rem;
-}
-#imageInput {
-    height: 5rem;
-    width: 100%;
-}
-.fileInput {
-    display: none;
-}
-.fileInputButton {
-    color: #ADB2D4;
-    font-weight: 700;
-    padding: 0.25rem 1rem;
-    cursor: pointer;
-    border: solid 2px #ADB2D4;
-    border-radius: 7px;
-}
-.fileInputButton:hover {
-    background-color: #ADB2D4;
-    color: whitesmoke;
-}
-.dragndrop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: dashed 2.5px #ADB2D4;
-    border-radius: 10px;
-    width: 50%;
-    height: auto;
-    min-height: 11rem;
-    background-color: #c0c5ce17;
-    margin: 0 0 3rem 0;
-    gap: 2rem;
-}
-.dragndrop p {
-    font-weight: 600;
-    color: rgba(128, 128, 128, 0.452);
-}
-.input-container {
-    width: 60%;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-}
-.input-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.input-box input {
-    border-radius: 10px;
-    height: 4em;
-    width: inherit;
-    text-align: center;
-    border: 1px gray solid;;
-    background-color: #c0c5ce17;/*#c0c5ce17 works so good with the dark background*/  /*was #f1f3f5*/ 
-    max-width: 100%;
-}
-
-.input-box input:focus {
-    outline: none;
-    border: 2px #ADB2D4 solid;
-}
-
-/* test input*/
-
-.group {
-  display: flex;
-  width: 17rem;
-  line-height: 40px;
-  align-items: center;
-  position: relative;
-  max-width: 100%;
-}
-
-.input {
-  width: 100%;
-  height: 45px;
-  line-height: 30px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  outline: none;
-  background-color: #f8fafc;
-  color: #0d0c22;
-  transition: .5s ease;
-}
-
-.input::placeholder {
-  color: #94a3b8;
-}
-
-.input:focus, input:hover {
-  outline: none;
-  border-color: rgba(129, 140, 248);
-  background-color: #fff;
-  box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
-}
-
-.icon {
-  position: absolute;
-  left: 1rem;
-  fill: none;
-  width: 1rem;
-  height: 1rem;
-}
-
-.icon-larger {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  fill: black 0.5px;
-  width: 1.9rem;
-  height: 2rem;
-}
-/**/
-
-/* DECODE-SECTION*/
-#decodeButton {
-    margin: 2rem;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.cta {
-    display: flex;
-    padding: 10px 45px;
-    text-decoration: none;
-    font-size: 40px;
-    color: white;
-    backdrop-filter: blur(6px);
-    background-color: rgba(108, 51, 199, 0.15); /* semi-transparent white */
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* subtle edge */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: 1s;
-    box-shadow: 6px 6px 0 #ADB2D4;;
-    transform: skewX(-15deg);
-}
-
-.cta:focus {
-   outline: none; 
-}
-
-.cta:hover {
-    transition: 0.5s;
-    box-shadow: 10px 10px 0 #ADB2D4;;
-}
-
-.cta span:nth-child(2) {
-    transition: 0.5s;
-    margin-right: 0px;
-}
-
-.cta:hover  span:nth-child(2) {
-    transition: 0.5s;
-    margin-right: 45px;
-}
-
-span {
-    transform: skewX(15deg) 
-}
-
-span:nth-child(2) {
-    width: 20px;
-    margin-left: 30px;
-    position: relative;
-    top: 12%;
-}
-  
-/**************SVG****************/
-path.one {
-    transition: 0.4s;
-    transform: translateX(-60%);
-}
-
-path.two {
-    transition: 0.5s;
-    transform: translateX(-30%);
-}
-
-.cta:hover path.three {
-    animation: color_anim 1s infinite 0.2s;
-}
-
-.cta:hover path.one {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.6s;
-}
-
-.cta:hover path.two {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.4s;
-}
-
-/* SVG animations */
-
-@keyframes color_anim {
-    0% {
-        fill: white;
-    }
-    50% {
-        fill: #ADB2D4;;
-    }
-    100% {
-        fill: white;
-    }
-}
-
-
-/*IN ENCODE OTRHER*/
-.en-decode-btns-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin: 2rem 0; 
-    align-items: center;
-}
-.button {
-    width: 10rem;
-    padding: 0.5rem;
-}
-canvas {
-    display: none;
-}
-.infoBox{
-    margin-top: 5rem;
-    border-radius: 10px;
-    width: 30rem;
-    height: fit-content;
-    padding: 0 1rem 2rem 1rem;
-    /*background color used to be #adb2d488 before trying the "purple glass"*/
-    backdrop-filter: blur(6px);
-    background-color: rgba(108, 51, 199, 0.15); /* semi-transparent white */
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* subtle edge */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
-}
-
-.infoBox2{
-    display: flex;
-    flex-direction: column;
-    margin-top: 3rem;
-    padding: 1rem;
-    border-radius: 10px;
-    width: 30rem;
-    height: fit-content;
-    backdrop-filter: blur(6px);
-    background-color: rgba(108, 51, 199, 0.15); /* semi-transparent white */
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* subtle edge */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.collapsable-button-2 {
-  border: none;
-}
-
-
-footer {
-    position: relative;
-    min-height: 4rem;
-    bottom: 0;
-    display: flex; /*was flex*/
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-/* NEW HEADER DESIGN 2 */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 1rem; /* make sure this is a valid CSS value (was written as `10 rem`) */
-    margin: 0;
-    z-index: 1000; /* make sure it's above all content */
+    height: 9rem;
+    z-index: 1000;
     background-color: transparent;
-    overflow: visible;
+    overflow: hidden;
 }
 
-.custom-header {
+.custom-header,
+.custom-footer {
     display: flex;
     width: 100%;
     height: 100%;
@@ -426,18 +72,15 @@ header {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 0;
+    overflow: hidden;
 }
 
 .shape {
     position: relative;
-    /*transform: skewX(-30deg);*/
-    transform-origin: none;
-    margin-right: -10rem;
-    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
-    /*Glassy vbackground (no backgorund is allowed to be set on individual shapes: dark,medium,light)*/
+    margin-right: -2.5rem;
     backdrop-filter: blur(6px);
-    background-color: rgba(108, 51, 199, 0.15); /* semi-transparent white */
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* subtle edge */
+    background-color: var(--shape-overlay);
+    border: 1px solid var(--border-soft);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -446,57 +89,33 @@ header {
     position: absolute;
     inset: 0;
     background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
-    opacity: 0.1; /* Adjust for subtlety */
+    opacity: var(--shape-texture-opacity);
     pointer-events: none;
     z-index: 1;
 }
 
-.dark {
-    /* background: linear-gradient(to right, #8c92ac 0%, #7a83a6 100%); */
-    width: 28vw;
-    max-width: 350px;
-    min-width: 180px;
-    height: 13.5rem;
+.custom-header .dark {
+    width: clamp(200px, 28vw, 360px);
+    height: 9rem;
     z-index: 3;
-    /* Remove skew from main element */
-    transform: none;
-    /* Create right-side angle with clip-path */
-    clip-path: polygon(0 0, 100% 0, calc(90% - 50px) 87%, 0% 100%);
-    /* Adjust margin to cover the angled part */
+    clip-path: polygon(0 0, 100% 0, calc(90% - 50px) 92%, 0% 100%);
     margin-right: -55px;
 }
 
-.medium {
-    clip-path: polygon(20% 0, 99% 0, calc(100% - 50px) 78%, 0 100%);
-    /* background: linear-gradient(to right, #a5aac5 0%, #949bc0 100%); */
-    width: 16vw;
-    min-width: 270px;
-    max-width: 270px;
-    height: 7.75rem;
+.custom-header .medium {
+    clip-path: polygon(20% 0, 99% 0, calc(100% - 50px) 82%, 0 100%);
+    width: clamp(190px, 18vw, 280px);
+    height: 7rem;
     z-index: 2;
     margin-right: -30px;
 }
 
-.light {
+.custom-header .light {
     clip-path: polygon(3% 0, 99% 0, calc(100% - 50px) 95%, 0 100%);
-    /* background: linear-gradient(to right, #b7bbd3 0%, #a8adc8 100%); */
     flex-grow: 1;
-    min-width: 180px;
+    min-width: 140px;
     height: 3.25rem;
     z-index: 1;
-}
-
-.header-content {
-    position: absolute;
-    top: -36rem;
-    left: 5.5rem;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20;
-    pointer-events: none;
 }
 
 #firstHeading {
@@ -504,79 +123,383 @@ header {
     flex-wrap: wrap;
     margin: 0.5rem 0 0 0.95rem;
     max-width: 85%;
-    pointer-events: auto;
     width: min-content;
+    position: relative;
+    z-index: 2;
 }
 
+.theme-toggle {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    z-index: 2;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.35rem 0.5rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
-#header-pic {
-    color: #db4fd4;
-    height: 90px;
-    margin: 3.75rem 0 0 -3.25rem;
-    
+.theme-toggle:hover,
+.theme-toggle:focus {
+    background-color: var(--accent);
+    color: #ffffff;
+    outline: none;
 }
 
 #header-pic2 {
     height: 57px;
     margin: 1.75rem 0 0 0;
     filter: opacity(66%);
+    position: relative;
+    z-index: 2;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: min(100%, 960px);
+    padding: 10.5rem 1rem 2rem;
+    gap: 0.35rem;
+}
+
+.encode-wrapper,
+.decode-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 800px);
+    padding: 0 0 1rem 0;
+}
+
+#image-preview-container {
+    display: none;
+    width: 200px;
+    height: 150px;
+}
+
+#image {
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: auto;
+    object-fit: contain;
+}
+
+.svg {
+    height: 2.25rem;
+    width: fit-content;
+}
+
+.tab button.active {
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 1rem;
+    background-color: var(--bg);
+}
+
+.tabField {
+    border-radius: 4px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.55rem 0.8rem;
+    color: color-mix(in srgb, var(--muted) 65%, transparent);
+    background-color: transparent;
+}
+
+.tabField:hover {
+    cursor: pointer;
+    background-color: color-mix(in srgb, var(--bg) 50%, transparent);
+}
+
+.tabContent {
+    display: none;
+}
+
+.tab {
+    border-radius: 5px;
+    margin: 0 0 2.4rem 0;
+    padding: 0.37rem;
+    display: flex;
+    justify-content: center;
+    background-color: var(--tab-bg);
+    gap: 0.2rem;
+}
+
+#imageInput {
+    height: 5rem;
+    width: 100%;
+}
+
+.fileInput {
+    display: none;
+}
+
+.fileInputButton {
+    color: var(--accent);
+    font-weight: 700;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    border: solid 2px var(--accent);
+    border-radius: 7px;
+}
+
+.fileInputButton:hover {
+    background-color: var(--accent);
+    color: #ffffff;
+}
+
+.dragndrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: dashed 2.5px var(--accent);
+    border-radius: 10px;
+    width: min(95%, 520px);
+    min-height: 11rem;
+    background-color: var(--surface);
+    margin: 0 0 2.2rem 0;
+    gap: 2rem;
+}
+
+.dragndrop p {
+    font-weight: 600;
+    color: color-mix(in srgb, var(--muted) 78%, transparent);
+}
+
+.input-container {
+    width: min(100%, 400px);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.group {
+    display: flex;
+    width: 17rem;
+    line-height: 40px;
+    align-items: center;
+    position: relative;
+    max-width: 100%;
+}
+
+.input {
+    width: 100%;
+    height: 45px;
+    line-height: 30px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    background-color: var(--panel);
+    color: var(--text);
+    transition: .3s ease;
+}
+
+.input::placeholder {
+    color: #94a3b8;
+}
+
+.input:focus,
+.input:hover {
+    outline: none;
+    border-color: var(--accent-strong);
+    background-color: var(--bg);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-strong) 30%, transparent);
+}
+
+.icon {
+    position: absolute;
+    left: 1rem;
+    fill: none;
+    width: 1rem;
+    height: 1rem;
+}
+
+.icon-larger {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    fill: var(--muted);
+    width: 1.9rem;
+    height: 2rem;
+    color: var(--muted);
+}
+
+#decodeButton {
+    margin: 2rem 0;
+}
+
+.en-decode-btns-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    align-items: center;
+}
+
+.button {
+    width: min(100%, 320px);
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.action-cta {
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-soft);
+    box-shadow: 6px 6px 0 var(--accent);
+    transform: skewX(-8deg);
+    transition: 0.2s ease;
+}
+
+.action-cta:hover {
+    transform: translateY(-1px) skewX(-8deg);
+    box-shadow: 9px 9px 0 var(--accent);
+}
+
+.action-cta:active {
+    transform: translateY(0) skewX(-8deg);
+}
+
+canvas {
+    display: none;
+}
+
+.infoBox,
+.infoBox2 {
+    border-radius: 10px;
+    width: min(100%, 30rem);
+    height: fit-content;
+    padding: 1rem;
+    backdrop-filter: blur(6px);
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.infoBox {
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+}
+
+.infoBox2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.collapsable-button-2 {
+    border: none;
+}
+
+footer {
+    position: relative;
+    min-height: 4.2rem;
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.custom-footer {
+    font-size: 0.65rem;
+    transform: scale(-1, -1);
+    min-height: 4.2rem;
+}
+
+.custom-footer .dark {
+    width: clamp(180px, 24vw, 320px);
+    height: 4.2rem;
+    z-index: 3;
+    clip-path: polygon(0 0, 100% 0, calc(90% - 36px) 86%, 0% 100%);
+    margin-right: -38px;
+}
+
+.custom-footer .medium {
+    clip-path: polygon(14% 0, 99% 0, calc(100% - 36px) 84%, 0 100%);
+    width: clamp(150px, 14vw, 220px);
+    height: 3.5rem;
+    z-index: 2;
+    margin-right: -20px;
+}
+
+.custom-footer .light {
+    clip-path: polygon(3% 0, 99% 0, calc(100% - 36px) 95%, 0 100%);
+    flex-grow: 1;
+    min-width: 120px;
+    height: 2.6rem;
+    z-index: 1;
+}
+
+.footer-text {
+    transform: scale(-1, -1);
+    margin: 0.45rem 1rem 0 0;
+    color: var(--muted);
+    text-align: right;
+}
+
+.footer-text span {
+    margin: 0;
 }
 
 h1 {
-    font-family: 'Orbitron', sans-serif;
     margin: 0.25rem 0;
     font-size: 2.5rem;
-    color: #a3aad4;/* #b7bbd3;*/
+    color: var(--accent);
     letter-spacing: 1.5px;
     font-weight: 800;
 }
 
 h2 {
-    font-family: 'Orbitron', sans-serif;
     margin: -0.75rem 0;
     font-size: 2.2rem;
-    color: /*#6f627e86;*/ #a3aad4;
+    color: var(--accent);
     letter-spacing: 1.5px;
     font-weight: 800;
 }
 
 h3 {
-    font-family: 'Orbitron', sans-serif;
     margin: 1.5rem 0;
     font-size: 0.85rem;
-    color: /*#7d3fcf86;*/ #6b7280;
+    color: var(--muted);
     letter-spacing: 1.5px;
     font-weight: 800;
-
 }
 
 h1 span {
     font-weight: 900;
     color: #db4fd4;
-    margin: 0 0 0 0;
     background: linear-gradient(to right, #db4fd4, #c747c0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
-}
-
-/*FOOTER*/
-.custom-footer {
-    font-size: 0.65rem;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 0;
-    transform: scale(-1, -1);
-}
-
-.footer-text {
-    transform: scale(-1, -1);
-    margin: 1rem 0 3rem 0; /*cuz flipped*/
-}
-.footer-text span {
-    margin: 1rem 0 5rem 7rem; /*cuz flipped*/
 }
