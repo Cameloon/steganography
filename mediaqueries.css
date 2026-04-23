@@ -1,4 +1,75 @@
 /* RESPONSIVE*/
+@media (max-width: 3600px) {
+.light {
+    clip-path: polygon(1% 0, 99% 0, 100% 95%, 0 100%);
+    /* background: linear-gradient(to right, #b7bbd3 0%, #a8adc8 100%); */
+    flex-grow: 1;
+    min-width: 180px;
+    height: 3.25rem;
+    z-index: 1;
+  }
+  .medium {
+    clip-path: polygon(15% 0%, 99% 0, calc(100% - 50px) 78%, 0 100%); /* background: linear-gradient(to right, #a5aac5 0%, #949bc0 100%); */ 
+    width: 20vw; margin-right: -30px; margin-left: -15px; }
+} 
+
+@media (max-width: 1800px) {
+  .light {
+    clip-path: polygon(1.75% 0%, 99% 0, 100% 95%, 0 100%);
+    /* background: linear-gradient(to right, #b7bbd3 0%, #a8adc8 100%); */
+    flex-grow: 1;
+    min-width: 180px;
+    height: 3.25rem;
+    z-index: 1;
+  }
+
+.medium {
+    clip-path: polygon(15% 0, 99% 0, calc(100% - 50px) 78%, 0 100%);
+    /* background: linear-gradient(to right, #a5aac5 0%, #949bc0 100%); */
+    width: 20vw;
+    margin-right: -30px;
+    margin-left: -5px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .light {
+    clip-path: polygon(2.25% 0%, 99% 0, 100% 95%, 0 100%);
+    /* background: linear-gradient(to right, #b7bbd3 0%, #a8adc8 100%); */
+    flex-grow: 1;
+    min-width: 180px;
+    height: 3.25rem;
+    z-index: 1;
+  }
+
+  .medium {
+    clip-path: polygon(18% 0, 99% 0, calc(100% - 50px) 78%, 0 100%);
+    /* background: linear-gradient(to right, #a5aac5 0%, #949bc0 100%); */
+    width: 20vw;
+    margin-right: -30px;
+    marin-left: -40px;
+  }
+}
+@media (max-width:1200px) {
+.light {
+    clip-path: polygon(3% 0%, 99% 0, 100% 95%, 0 100%);
+    /* background: linear-gradient(to right, #b7bbd3 0%, #a8adc8 100%); */
+    flex-grow: 1;
+    min-width: 180px;
+    height: 3.25rem;
+    z-index: 1;
+}
+.medium {
+    clip-path: polygon(20% 0, 99% 0, calc(100% - 50px) 78%, 0 100%);
+    /* background: linear-gradient(to right, #a5aac5 0%, #949bc0 100%); */
+    width: 16vw;
+    min-width: 270px;
+    max-width: 270px;
+    height: 7.75rem;
+    z-index: 2;
+    margin-right: -30px;
+}
+}
 @media (max-width: 900px) {
     body {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -15,26 +86,21 @@
         margin-right: -2.5rem;
     }
 
-    .dark {
-        min-width: 180px;
-        height: 8rem;
-        clip-path: polygon(0 0, 100% 0, calc(90% - 50px) 100%, 0 100%);
-        margin-right: -55px;
-    }
-
     .medium {
-       width: 25vw;
-        min-width: 270px;
-        max-width: 270px;
-        height: 7.75rem;
-        z-index: 2;
+    width: 16vw;
+    min-width: 220px;
+    max-width: 270px;
+    height: 7.75rem;
+    z-index: 2;
+    margin-right: -25px;
+    margin-left: -20px;
     }
     
     .light {
+        clip-path: polygon(4% 0%, 99% 0, 100% 95%, 0 100%);
         min-width: 160px;
         height: 3rem;
     }
-
     .firstHeading {
         flex-direction: column;
         text-align: center;
@@ -63,6 +129,23 @@
 
 
 @media screen and (max-width: 800px) {
+
+h1 {
+        font-size: 1.7rem;
+      margin-top: 1rem;
+    }
+ h2 {
+        font-size: 1.7rem;
+    }
+    h3 {
+        margin-top: 1rem;
+        margin-right: 1.8rem;
+        font-size: 0.7rem;
+    }
+
+  .dark {
+    height: 12rem;
+    min-width: 216px; }
     .image-preview-container {
         width: 60%;
         height: 60%;
@@ -94,27 +177,68 @@
         align-items: center;
     }
 
-    .button {
-        width: 5rem;
-        padding: 0.5rem;
+   .button {
+        width: 80%; 
+        max-width: 280px; 
     }
 }
 
 @media screen and (max-width: 500px) {
-    h1 {
+      h1 {
         font-size: 1.3rem;
+    margin: 0;
     }
-
+ h2 {
+        font-size: 1.5rem;
+    }
     h3 {
-        margin-top: 0.2rem;
+        margin-top: 1rem;
+        margin-right: 1.8;
         font-size: 0.7rem;
     }
 
-    #header-pic {
-        height: 70px;
-        margin: 0 0rem 0 3rem ;
+    #header-pic2{
+        height: 40px;
+        margin: 0.8rem 3rem ;
     }
+  
+  .shape {
+    border: none;
+  }
 
+    .light {
+        clip-path: polygon(10% 0%, 99% 0, 100% 95%, 0 100%);
+        min-width: 260px;
+        height: 2rem;
+        margin-left: -13px;   
+  }
+
+  .medium {
+    clip-path: polygon(100% 40%, 99% 0, 90 0%, 0 100%);
+    width: 16vw;
+    min-width: 160px;
+    max-width: 100px;
+    height: 4.5rem;  
+    z-index: 2;
+    margin-right: -25px;
+    margin-left: 8px;
+  }
+  
+
+    .dark {
+    /* background: linear-gradient(to right, #8c92ac 0%, #7a83a6 100%); */
+    width: 28vw;
+    max-width: 400px;
+    min-width: 180px;
+    height: 8.5rem;
+    z-index: 3;
+    /* Remove skew from main element */
+    transform: none;
+    /* Create right-side angle with clip-path */
+    clip-path: polygon(0 0, 100% 0, calc(90% - 50px) 87%, 0% 100%);
+    /* Adjust margin to cover the angled part */
+    margin-right: -55px;
+    }
     .en-decode-btns-container {
         display: flex;
         flex-wrap: wrap;
@@ -157,7 +281,7 @@
     }
 
     .button {
-        width: 100%; 
+        width: 80%; 
         max-width: 280px; 
     }
 
@@ -177,4 +301,8 @@
         align-items: center;
         justify-content: center;
     }
+  .infoBox,
+  .infoBox2 {
+    line-height: 1.5;
+  }
 }

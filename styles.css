@@ -19,7 +19,7 @@ body {
     min-height: 100%;
     gap: 2rem;
     overflow-x: hidden; /* same as in html*/
-    width: 100vw;
+    width: 100%;
     background-color: #ffffff; /*this is also good #f5f3ff; was #f8f9fa - #e8e8e8*/ /*for dark: #212121 ? */
 }
 header {
@@ -55,6 +55,7 @@ main {
     height: 100%;
     width: 80%;
     padding: 0 0 1rem 0;
+    margin: 2rem 0;
 }
 
 .decode-wrapper {
@@ -64,6 +65,7 @@ main {
     height: 100%;
     width: 80%;
     padding: 0 0 1rem 0;
+  margin: 2rem 0;
 }
 #image-preview-container {
     display: none; /* only display when image is inputted so that whitespace is avoided */
@@ -78,10 +80,10 @@ main {
     display: block;
     margin: auto;
     object-fit: contain;
-    /* max-width: 100%; 
+    max-width: 100%; 
     max-height: 100%; 
     display: flex;
-    margin: auto; */
+    margin: auto; 
 }
 .svg {
     height: 2.25rem;
@@ -361,7 +363,8 @@ canvas {
 .infoBox{
     margin-top: 5rem;
     border-radius: 10px;
-    width: 30rem;
+    width: 100%;  
+    max-width: 30rem;
     height: fit-content;
     padding: 0 1rem 2rem 1rem;
     /*background color used to be #adb2d488 before trying the "purple glass"*/
@@ -377,8 +380,8 @@ canvas {
     margin-top: 3rem;
     padding: 1rem;
     border-radius: 10px;
-    width: 30rem;
-    height: fit-content;
+    width: 100%;  
+    max-width: 30rem;
     backdrop-filter: blur(6px);
     background-color: rgba(108, 51, 199, 0.15); /* semi-transparent white */
     border: 1px solid rgba(255, 255, 255, 0.2);  /* subtle edge */
@@ -386,6 +389,16 @@ canvas {
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.infoBox p,
+.infoBox2 p {
+    margin: 0.5rem 0;
+}
+
+.infoBox h4,
+.infoBox2 h4 {
+    margin-bottom: 1rem;
 }
 
 .collapsable-button-2 {
@@ -467,18 +480,17 @@ header {
 }
 
 .medium {
-    clip-path: polygon(20% 0, 99% 0, calc(100% - 50px) 78%, 0 100%);
+    clip-path: polygon(14% 0, 99% 0, calc(100% - 50px) 78%, 0 100%);
     /* background: linear-gradient(to right, #a5aac5 0%, #949bc0 100%); */
     width: 16vw;
-    min-width: 270px;
-    max-width: 270px;
-    height: 7.75rem;
+    /*min-width: 270px;
+    max-width: 270px;*/ height: 7.75rem;
     z-index: 2;
     margin-right: -30px;
 }
 
 .light {
-    clip-path: polygon(3% 0, 99% 0, calc(100% - 50px) 95%, 0 100%);
+    clip-path: polygon(3% 0, 99% 0, 92% 95%, 0 100%);
     /* background: linear-gradient(to right, #b7bbd3 0%, #a8adc8 100%); */
     flex-grow: 1;
     min-width: 180px;
